@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Book Collection</title>
+    <link href="/main.css" th:href="@{/styles/main.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+    <div><h1>Book Collection</h1></div>
+
+    <ul>
+        <li><a th:href="@{/add-form}">Add a new book</a></li>
+        <li><a th:href="@{/edit-form}">Edit an existing book</a></li>
+        <li><a th:href="@{/delete-form}">Delete an existing book</a></li>
+        <li><a th:href="@{/list-form}">List all books</a></li>
+    </ul>
+
+    <div class="container">
+        <div class="box-1">
+            <h3>Add a new book</h3>
+            <form class="myForm" action="form1" method="post" th:object="${book}">
+                <p>
+                    <label>Name <em class="wildcard">*</em>
+                        <input type="text" name="book_name" required>
+                    </label>
+                </p>
+                <p>
+                    <label>ISBN Number <em class="wildcard">*</em>
+                        <input type="text" name="book_isbn" required>
+                    </label>
+                </p>
+                <p>
+                    <label>Publish Date <em class="wildcard">*</em>
+                        <input type="text" name="book_publish_dt" required>
+                    </label>
+                </p>
+                <p>
+                    <label>Price (ZAR) <em class="wildcard">*</em>
+                        <input type="text" name="book_price" required>
+                    </label>
+                </p>
+                <p>
+                    <label>Book Type <em class="wildcard">*</em>
+                        <input type="text" name="book_type" required>
+                    </label>
+                </p>
+                <p><button type="submit">Add Book</button></p>
+            </form>
+
+
+            <!-- <form class="myForm" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm"> -->
+<!--            <form class="myForm" th:action="@{/}" method="post" th:object="${book}">-->
+<!--            <p>-->
+<!--                <label>Name <em class="wildcard">*</em>-->
+<!--                    <input type="text" th:field="*{name}" required>-->
+<!--                </label>-->
+<!--            </p>-->
+<!--            <p>-->
+<!--                <label>ISBN Number <em class="wildcard">*</em>-->
+<!--                    <input type="text" th:field="*{isbn}" required>-->
+<!--                </label>-->
+<!--            </p>-->
+<!--            <p>-->
+<!--                <label>Publish Date <em class="wildcard">*</em>-->
+<!--                    <input type="text" th:field="*{publishDate}" required>-->
+<!--                </label>-->
+<!--            </p>-->
+<!--            <p>-->
+<!--                <label>Price (ZAR) <em class="wildcard">*</em>-->
+<!--                    <input type="text" th:field="*{price}" required>-->
+<!--                </label>-->
+<!--            </p>-->
+<!--            <p>-->
+<!--                <label>Book Type <em class="wildcard">*</em>-->
+<!--                    <input type="text" th:field="*{bookType}" required>-->
+<!--                </label>-->
+<!--            </p>-->
+<!--                <input type="submit" value="Create User">-->
+<!--            </form>-->
+
+        </div>
+
+        <div class="box-2">
+            <h3>Edit an existing book</h3>
+            <!-- <form class="myForm" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm"> -->
+            <form class="myForm" method="get">
+            <p>
+                <label>ID <em class="wildcard">*</em>
+                    <input type="text" name="book_id" required>
+                </label> 
+            </p>
+            <p>
+                <label>Name
+                    <input type="text" name="book_name" required>
+                </label> 
+            </p>
+            <p>
+                <label>ISBN Number
+                    <input type="text" name="book_isbn">
+                </label>
+            </p>
+            <p>
+                <label>Publish Date
+                    <input type="text" name="book_publish_dt">
+                </label>
+            </p>
+            <p>
+                <label>Price (ZAR)
+                    <input type="text" name="book_price">
+                </label>
+            </p>
+            <p>
+                <label>Book Type
+                    <input type="text" name="book_type">
+                </label>
+            </p>
+            <p><button>Edit Book</button></p>
+            </form>
+        </div>
+        <div class="box-3">
+            <h3>Delete an existing book</h3>
+            <!-- <form class="myForm" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm"> -->
+            <form class="myForm" method="get">
+            <p>
+                <label>ID <em class="wildcard">*</em>
+                    <input type="text" name="book_id" required>
+                </label> 
+            </p>
+            <p><button>Delete Book</button></p>
+            </form>
+        </div>
+        <div class="box-4">
+            <h3>List all books</h3>
+            <form action="" class="myForm" method="get">
+                <div id="button-1">
+                    <p>
+                        <button id="button-1">Show Books</button>
+                    </p>
+                </div>
+                <div id="instruction-1"><p>Click above and scroll below</p></div>
+            </form>
+        </div>
+      </div>
+
+<!--    <p th:text="${bookData.emailSubject}">Subject</p>-->
+
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>ISBN Number</th>
+            <th>Publish Date</th>
+            <th>Price (ZAR)</th>
+            <th>Book Type</th>
+        </tr>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.name}">Design Patterns</td>
+            <td th:text="${book.isbn}">0-201-63361-2</td>
+            <td th:text="${book.publishDate}">October 31, 1994</td>
+            <td th:text="${book.price}">500</td>
+            <td th:text="${book.bookType}">Hard Cover</td>
+        </tr>
+    </table>
+
+</body>
+</html>

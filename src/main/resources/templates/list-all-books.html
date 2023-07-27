@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Book Collection</title>
+    <link href="/main.css" th:href="@{/styles/main.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<div class="box-4">
+
+    <ul>
+        <li><a th:href="@{/add-form}">Add a new book</a></li>
+        <li><a th:href="@{/edit-form}">Edit an existing book</a></li>
+        <li><a th:href="@{/delete-form}">Delete an existing book</a></li>
+        <li><a th:href="@{/list-form}">List all books</a></li>
+    </ul>
+
+    <h1>List all books</h1>
+
+    <form action="" class="myForm" method="get">
+        <div id="button-1">
+            <p>
+                <button id="button-1">Show Books</button>
+            </p>
+        </div>
+        <div id="instruction-1"><p>Click above and scroll below</p></div>
+    </form>
+</div>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>ISBN Number</th>
+        <th>Publish Date</th>
+        <th>Price (ZAR)</th>
+        <th>Book Type</th>
+    </tr>
+    <tr th:each="book : ${books1}">
+        <td th:text="${book.name}">Design Patterns</td>
+        <td th:text="${book.isbn}">0-201-63361-2</td>
+        <td th:text="${book.publishDate}">October 31, 1994</td>
+        <td th:text="${book.price}">500</td>
+        <td th:text="${book.bookType}">Hard Cover</td>
+    </tr>
+</table>
+</body>
+</html>

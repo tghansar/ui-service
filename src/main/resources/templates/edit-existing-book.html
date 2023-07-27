@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Book Collection</title>
+    <link href="/main.css" th:href="@{/styles/main.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<div class="box-2">
+
+    <ul>
+        <li><a th:href="@{/add-form}">Add a new book</a></li>
+        <li><a th:href="@{/edit-form}">Edit an existing book</a></li>
+        <li><a th:href="@{/delete-form}">Delete an existing book</a></li>
+        <li><a th:href="@{/list-form}">List all books</a></li>
+    </ul>
+
+    <h1>Edit an existing book</h1>
+
+    <!-- <form class="myForm" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm"> -->
+    <form class="myForm" method="get">
+        <p>
+            <label>ID <em id="wildcard">*</em>
+                <input type="text" name="book_id" required>
+            </label>
+        </p>
+        <p>
+            <label>Name
+                <input type="text" name="book_name" required>
+            </label>
+        </p>
+        <p>
+            <label>ISBN Number
+                <input type="text" name="book_isbn">
+            </label>
+        </p>
+        <p>
+            <label>Publish Date
+                <input type="text" name="book_publish_dt">
+            </label>
+        </p>
+        <p>
+            <label>Price (ZAR)
+                <input type="text" name="book_price">
+            </label>
+        </p>
+        <p>
+            <label>Book Type
+                <input type="text" name="book_type">
+            </label>
+        </p>
+        <p><button>Edit Book</button></p>
+    </form>
+</div>
+
+</body>
+</html>
