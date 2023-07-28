@@ -26,28 +26,24 @@ public class BookController {
     @GetMapping("/add-form")
     public String getAddForm(Model model){
         model.addAttribute("book", new Book());
-        System.out.println("Add form submitted");
         return "add-new-book";
     }
 
     @GetMapping("/delete-form")
     public String getDeleteForm(Model model){
         model.addAttribute("book", new Book());
-        System.out.println("Delete form submitted");
         return "delete-existing-book";
     }
 
     @GetMapping("/edit-form")
     public String getEditForm(Model model){
         model.addAttribute("book", new Book());
-        System.out.println("Edit form submitted");
         return "edit-existing-book";
     }
 
     @GetMapping("/list-form")
     public String getListForm(Model model){
         model.addAttribute("books", connectionClient.getAllBooks()); // list of books
-        System.out.println("List displayed");
         return "list-all-books";
     }
 
