@@ -15,7 +15,6 @@ public class BookController {
     private ServletContext servletContext;
     private ConnectionClient connectionClient;
 
-
     public BookController(ServletContext servletContext) {
         this.servletContext = servletContext;
 
@@ -23,55 +22,63 @@ public class BookController {
         connectionClient = new ConnectionClient();
     }
 
+    // -- index page --
+
     @RequestMapping("/")
     public String showHome(Model model){
         model.addAttribute("books", connectionClient.getAllBooks()); //BOOKS
         return "index"; //html file
     }
 
-    @GetMapping("/add")
-    public String showAddForm(@ModelAttribute("book") Book book, BindingResult bindingResult, Model model){
-        model.addAttribute("book", new Book()); //BOOK
-        return "add-new-book"; //html file
-    }
-
-    @RequestMapping("/edit")
-    public String showEditForm(@ModelAttribute("book") Book book, BindingResult bindingResult, Model model){
-        model.addAttribute("book", new Book());
-        return "edit-existing-book"; //html file
-    }
-
-    @RequestMapping("/delete")
-    public String showDeleteForm(@ModelAttribute("book") Book book, BindingResult bindingResult, Model model){
-        model.addAttribute("book", book);
-        connectionClient.deleteBook(book.getId());
-        return "delete-existing-book"; //html file
-    }
-
-    @RequestMapping("/list")
-    public String showListForm(@ModelAttribute("book") Book book, BindingResult bindingResult, Model model){
-        model.addAttribute("book", new Book());
-        return "list-all-books"; //html file
-    }
-
-    // Navigation
+    // -- Browser requested forms --
     @GetMapping("/add-form")
-    public String getAddForm(){
-        return "add-new-book.html";
+    public String getAddForm(Model model){
+        model.addAttribute("book", new Book());
+        System.out.println("Add form submitted");
+        return "add-new-book";
     }
 
     @GetMapping("/delete-form")
-    public String getDeleteForm(){
-        return "delete-existing-book.html";
+    public String getDeleteForm(Model model){
+        model.addAttribute("book", new Book());
+        System.out.println("Delete form submitted");
+        return "delete-existing-book";
     }
 
     @GetMapping("/edit-form")
-    public String getEditForm(){
-        return "edit-existing-book.html";
+    public String getEditForm(Model model){
+        model.addAttribute("book", new Book());
+        System.out.println("Edit form submitted");
+        return "edit-existing-book";
     }
 
     @GetMapping("/list-form")
-    public String getListForm(){
-        return "list-all-books.html";
+    public String getListForm(Model model){
+        model.addAttribute("books", connectionClient.getAllBooks()); //BOOKS
+        System.out.println("List displayed");
+        return "list-all-books";
+    }
+
+    // -- Form submissions --
+
+    @RequestMapping("/add-form")
+    public String submitAdd(@ModelAttribute("book") Book book, Model model){
+        model.addAttribute("book", new Book()); //BOOK
+        connectionClient.createBook(book);
+        return "add-new-book";
+    }
+
+    @RequestMapping("/edit-form")
+    public String submitEdit(@ModelAttribute("book") Book book, Model model){
+        model.addAttribute("book", new Book());
+        connectionClient.updateBook(book.getId(), book);
+        return "edit-existing-book";
+    }
+
+    @RequestMapping("/delete-form")
+    public String submitDelete(@ModelAttribute("book") Book book, Model model){
+        model.addAttribute("book", book);
+        connectionClient.deleteBook(book.getId());
+        return "delete-existing-book";
     }
 }

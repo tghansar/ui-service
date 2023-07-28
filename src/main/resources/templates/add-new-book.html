@@ -8,103 +8,45 @@
     <link href="/main.css" th:href="@{/styles/main.css}" rel="stylesheet" media="screen"/>
 </head>
 <body>
-<div class="box-1">
+<div><h1>Book Collection</h1></div>
 
-    <ul>
-        <li><a th:href="@{/add-form}">Add a new book</a></li>
-        <li><a th:href="@{/edit-form}">Edit an existing book</a></li>
-        <li><a th:href="@{/delete-form}">Delete an existing book</a></li>
-        <li><a th:href="@{/list-form}">List all books</a></li>
-    </ul>
+<ul>
+    <li style="background-color: black;"><a th:href="@{/add-form}">Add a new book</a></li>
+    <li><a th:href="@{/edit-form}">Edit an existing book</a></li>
+    <li><a th:href="@{/delete-form}">Delete an existing book</a></li>
+    <li><a th:href="@{/list-form}">List all books</a></li>
+</ul>
+<br>
 
-    <h1>Add a new book</h1>
-
-    <form th:action="@{/add}" th:method="post" th:object="${book}">
-        <label>Name</label>
-        <label>
-<!--            <input type="text" th:field="${book.name}">-->
-            <input type="text">
+<form class="myForm" th:action="@{/add-form}" th:method="post" th:object="${book}">
+    <p>
+        <label>Name <em class="wildcard">*</em>
+            <input type="text" name="book_name" th:field="*{name}" required>
         </label>
-        <label>ISBN</label>
-        <label>
-<!--            <input type="text" th:field="${book.isbn}">-->
-            <input type="text">
+    </p>
+    <p>
+        <label>ISBN Number <em class="wildcard">*</em>
+            <input type="text" name="book_isbn" th:field="*{isbn}" required>
         </label>
-        <label>Publish Date</label>
-        <label>
-<!--            <input type="text" th:field="${book.publishDate}">-->
-            <input type="text">
+    </p>
+    <p>
+        <label>Publish Date <em class="wildcard">*</em>
+            <input type="text" name="book_publish_dt" th:field="*{publishDate}" required>
         </label>
-        <label>Price</label>
-        <label>
-<!--            <input type="text" th:field="${book.price}">-->
-            <input type="text">
+    </p>
+    <p>
+        <label>Price (ZAR) <em class="wildcard">*</em>
+            <input type="text" name="book_price" th:field="*{price}" required>
         </label>
-        <label>Book Type</label>
-        <label>
-<!--            <input type="text" th:field="${book.bookType}">-->
-            <input type="text">
+    </p>
+    <p>
+        <label>Book Type <em class="wildcard">*</em>
+            <input type="text" name="book_type" th:field="*{bookType}" required>
         </label>
-        <button type="submit">Submit</button>
-    </form>
+    </p>
+    <p><button type="submit">Add Book</button></p>
+</form>
 
 
-<!--    <form class="myForm" th:action="@{/}" method="post" th:object="${book}">-->
-<!--        <p>-->
-<!--            <label>Name <em class="wildcard">*</em>-->
-<!--                <input type="text" th:field="*{name}" required>-->
-<!--            </label>-->
-<!--        </p>-->
-<!--        <p>-->
-<!--            <label>ISBN Number <em class="wildcard">*</em>-->
-<!--                <input type="text" th:field="*{isbn}" required>-->
-<!--            </label>-->
-<!--        </p>-->
-<!--        <p>-->
-<!--            <label>Publish Date <em class="wildcard">*</em>-->
-<!--                <input type="text" th:field="*{publishDate}" required>-->
-<!--            </label>-->
-<!--        </p>-->
-<!--        <p>-->
-<!--            <label>Price (ZAR) <em class="wildcard">*</em>-->
-<!--                <input type="text" th:field="*{price}" required>-->
-<!--            </label>-->
-<!--        </p>-->
-<!--        <p>-->
-<!--            <label>Book Type <em class="wildcard">*</em>-->
-<!--                <input type="text" th:field="*{bookType}" required>-->
-<!--            </label>-->
-<!--        </p>-->
-<!--        <input type="submit" value="Create User">-->
-<!--    </form>-->
-<!--    <form action="#" th:action="@{/register}" method="post" th:object="${book}">-->
-<!--        <p>-->
-<!--            <label>Name <em class="wildcard">*</em>-->
-<!--                <input type="text" th:field="*{name}" required>-->
-<!--            </label>-->
-<!--        </p>-->
-<!--        <p>-->
-<!--            <label>ISBN Number <em class="wildcard">*</em>-->
-<!--                <input type="text" th:field="*{isbn}" required>-->
-<!--            </label>-->
-<!--        </p>-->
-<!--        <p>-->
-<!--            <label>Publish Date <em class="wildcard">*</em>-->
-<!--                <input type="text" th:field="*{publishDate}" required>-->
-<!--            </label>-->
-<!--        </p>-->
-<!--        <p>-->
-<!--            <label>Price (ZAR) <em class="wildcard">*</em>-->
-<!--                <input type="text" th:field="*{price}" required>-->
-<!--            </label>-->
-<!--        </p>-->
-<!--        <p>-->
-<!--            <label>Book Type <em class="wildcard">*</em>-->
-<!--                <input type="text" th:field="*{bookType}" required>-->
-<!--            </label>-->
-<!--        </p>-->
-<!--        <p><button type="submit">Add Book</button></p>-->
-<!--    </form>-->
-</div>
 </body>
 </html>

@@ -26,6 +26,7 @@ public class ConnectionClient {
 
     public void createBook(Book book) {
         connection.getConnectionProxy().createBook(book);
+        System.out.println("Created book");
     }
 
     public Iterable<Book> getAllBooks() {
@@ -44,5 +45,10 @@ public class ConnectionClient {
     public void deleteBook(Long id) {
         connection.getConnectionProxy().deleteBook(id);
         System.out.println("Deleted book");
+    }
+
+    public void updateBook(Long id, Book book) {
+        connection.getConnectionProxy().updateBook(id, book);
+        System.out.println("Edited book");
     }
 }

@@ -8,52 +8,50 @@
     <link href="/main.css" th:href="@{/styles/main.css}" rel="stylesheet" media="screen"/>
 </head>
 <body>
-<div class="box-2">
+<div><h1>Book Collection</h1></div>
 
-    <ul>
-        <li><a th:href="@{/add-form}">Add a new book</a></li>
-        <li><a th:href="@{/edit-form}">Edit an existing book</a></li>
-        <li><a th:href="@{/delete-form}">Delete an existing book</a></li>
-        <li><a th:href="@{/list-form}">List all books</a></li>
-    </ul>
+<ul>
+    <li><a th:href="@{/add-form}">Add a new book</a></li>
+    <li style="background-color: black;"><a th:href="@{/edit-form}">Edit an existing book</a></li>
+    <li><a th:href="@{/delete-form}">Delete an existing book</a></li>
+    <li><a th:href="@{/list-form}">List all books</a></li>
+</ul>
+<br>
 
-    <h1>Edit an existing book</h1>
+<form class="myForm" th:action="@{/edit-form}" th:method="post" th:object="${book}">
+    <p>
+        <label>ID <em class="wildcard">*</em>
+            <input type="text" name="book_name" th:field="*{id}" required>
+        </label>
+    </p>
+    <p>
+        <label>Name <em class="wildcard">*</em>
+            <input type="text" name="book_name" th:field="*{name}">
+        </label>
+    </p>
+    <p>
+        <label>ISBN Number <em class="wildcard">*</em>
+            <input type="text" name="book_isbn" th:field="*{isbn}">
+        </label>
+    </p>
+    <p>
+        <label>Publish Date <em class="wildcard">*</em>
+            <input type="text" name="book_publish_dt" th:field="*{publishDate}">
+        </label>
+    </p>
+    <p>
+        <label>Price (ZAR) <em class="wildcard">*</em>
+            <input type="text" name="book_price" th:field="*{price}">
+        </label>
+    </p>
+    <p>
+        <label>Book Type <em class="wildcard">*</em>
+            <input type="text" name="book_type" th:field="*{bookType}">
+        </label>
+    </p>
+    <p><button type="submit">Edit Book</button></p>
+</form>
 
-    <!-- <form class="myForm" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm"> -->
-    <form class="myForm" method="get">
-        <p>
-            <label>ID <em id="wildcard">*</em>
-                <input type="text" name="book_id" required>
-            </label>
-        </p>
-        <p>
-            <label>Name
-                <input type="text" name="book_name" required>
-            </label>
-        </p>
-        <p>
-            <label>ISBN Number
-                <input type="text" name="book_isbn">
-            </label>
-        </p>
-        <p>
-            <label>Publish Date
-                <input type="text" name="book_publish_dt">
-            </label>
-        </p>
-        <p>
-            <label>Price (ZAR)
-                <input type="text" name="book_price">
-            </label>
-        </p>
-        <p>
-            <label>Book Type
-                <input type="text" name="book_type">
-            </label>
-        </p>
-        <p><button>Edit Book</button></p>
-    </form>
-</div>
 
 </body>
 </html>

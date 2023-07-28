@@ -8,25 +8,25 @@
     <link href="/main.css" th:href="@{/styles/main.css}" rel="stylesheet" media="screen"/>
 </head>
 <body>
-<div class="box-3">
+<div><h1>Book Collection</h1></div>
 
-    <ul>
-        <li><a th:href="@{/add-form}">Add a new book</a></li>
-        <li><a th:href="@{/edit-form}">Edit an existing book</a></li>
-        <li><a th:href="@{/delete-form}">Delete an existing book</a></li>
-        <li><a th:href="@{/list-form}">List all books</a></li>
-    </ul>
+<ul>
+    <li><a th:href="@{/add-form}">Add a new book</a></li>
+    <li><a th:href="@{/edit-form}">Edit an existing book</a></li>
+    <li style="background-color: black;"><a th:href="@{/delete-form}">Delete an existing book</a></li>
+    <li><a th:href="@{/list-form}">List all books</a></li>
+</ul>
+<br>
 
-    <h1>Delete an existing book</h1>
+<form class="myForm" th:action="@{/delete-form}" th:method="post" th:object="${book}">
+    <p>
+        <label>ID <em class="wildcard">*</em>
+            <input type="text" name="book_name" th:field="*{id}" required>
+        </label>
+    </p>
+    <p><button type="submit">Delete Book</button></p>
+</form>
 
-    <form class="myForm" method="get">
-        <p>
-            <label>ID <em id="wildcard">*</em>
-                <input type="text" name="book_id" required>
-            </label>
-        </p>
-        <p><button>Delete Book</button></p>
-    </form>
-</div>
+
 </body>
 </html>
