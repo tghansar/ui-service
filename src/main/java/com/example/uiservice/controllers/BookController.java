@@ -4,33 +4,25 @@ import com.example.uiservice.connections.ConnectionClient;
 import com.example.uiservice.models.Book;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.ServletContext;
-import javax.validation.Valid;
 
 @Controller
 public class BookController {
-    private ServletContext servletContext;
-    private ConnectionClient connectionClient;
+    private final ConnectionClient connectionClient;
 
-    public BookController(ServletContext servletContext) {
-        this.servletContext = servletContext;
-
+    public BookController() {
         // initiate connection client
         connectionClient = new ConnectionClient();
     }
 
     // -- index page --
-
     @RequestMapping("/")
     public String showHome(Model model){
         model.addAttribute("books", connectionClient.getAllBooks()); //BOOKS
         return "index"; //html file
     }
 
-    // -- Browser requested forms --
+    // -- form navigation --
     @GetMapping("/add-form")
     public String getAddForm(Model model){
         model.addAttribute("book", new Book());
@@ -54,16 +46,15 @@ public class BookController {
 
     @GetMapping("/list-form")
     public String getListForm(Model model){
-        model.addAttribute("books", connectionClient.getAllBooks()); //BOOKS
+        model.addAttribute("books", connectionClient.getAllBooks()); // list of books
         System.out.println("List displayed");
         return "list-all-books";
     }
 
-    // -- Form submissions --
-
+    // -- form submissions --
     @RequestMapping("/add-form")
     public String submitAdd(@ModelAttribute("book") Book book, Model model){
-        model.addAttribute("book", new Book()); //BOOK
+        model.addAttribute("book", new Book());
         connectionClient.createBook(book);
         return "add-new-book";
     }
