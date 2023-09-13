@@ -1,7 +1,6 @@
 package com.example.uiservice.clients;
 
 import com.example.uiservice.models.Book;
-import com.example.uiservice.models.Books;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -12,7 +11,7 @@ public interface ServicesClient {
 
     @GET
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    Books getAllBooks();
+    Iterable<Book> getAllBooks();
 
     @POST
     @Path("/create")

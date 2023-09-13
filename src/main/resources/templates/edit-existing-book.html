@@ -21,7 +21,7 @@
 <form class="myForm" th:action="@{/edit-form}" th:method="post" th:object="${book}">
     <p>
         <label>ID <em class="wildcard">*</em>
-            <input type="text" name="book_name" th:field="*{id}" required>
+            <input type="text" name="id" th:field="*{id}" required>
         </label>
     </p>
     <p>
