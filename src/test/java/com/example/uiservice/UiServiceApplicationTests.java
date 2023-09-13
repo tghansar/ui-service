@@ -37,6 +37,8 @@ class UiServiceApplicationTests {
         for (Book book : testClient.getAllBooks()) {
             System.out.println(book);
         }
+
+        testClient.updateBook(1L, new Book("#", "#", "#", "#", "#"));
     }
 
 }

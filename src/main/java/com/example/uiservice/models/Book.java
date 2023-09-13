@@ -7,8 +7,6 @@ import java.io.Serializable;
 @XmlRootElement(name = "book")
 public class Book implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     public Book() {
     }
 
@@ -22,9 +20,6 @@ public class Book implements Serializable {
 
     @XmlAttribute(name = "id")
     private Long id;
-
-    @XmlAttribute(name="uri")
-    private String uri;
 
     @XmlElement(name = "book_name")
     private String name;
@@ -45,16 +40,8 @@ public class Book implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id) { // being used by Thymeleaf
         this.id = id;
-    }
-
-    public String getUri() {
-        return uri;
-    }
-
-    public void setUri(String uri) {
-        this.uri = uri;
     }
 
     public String getName() {
@@ -101,7 +88,6 @@ public class Book implements Serializable {
     public String toString() {
         return "Book{" +
                 "id=" + id +
-                ", uri='" + uri + '\'' +
                 ", name='" + name + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", publishDate='" + publishDate + '\'' +

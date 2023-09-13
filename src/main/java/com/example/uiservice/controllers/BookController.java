@@ -18,7 +18,7 @@ public class BookController {
     // -- index page --
     @RequestMapping("/")
     public String showHome(Model model){
-        model.addAttribute("books", connectionClient.getAllBooks()); //BOOKS
+        model.addAttribute("books", connectionClient.getAllBooks());
         return "index"; //html file
     }
 
@@ -50,14 +50,14 @@ public class BookController {
     // -- form submissions --
     @RequestMapping("/add-form")
     public String submitAdd(@ModelAttribute("book") Book book, Model model){
-        model.addAttribute("book", new Book());
+        model.addAttribute("book", book);
         connectionClient.createBook(book);
         return "add-new-book";
     }
 
     @RequestMapping("/edit-form")
     public String submitEdit(@ModelAttribute("book") Book book, Model model){
-        model.addAttribute("book", new Book());
+        model.addAttribute("book", book);
         connectionClient.updateBook(book.getId(), book);
         return "edit-existing-book";
     }
