@@ -17,14 +17,13 @@ public class ConnectionClient {
             return remote.getBookById(id);
         }
         catch (javax.ws.rs.NotFoundException exception) {
-            System.out.println("Error - book not found");
+            exception.printStackTrace();
             return null;
         }
     }
 
     public void createBook(Book book) {
         remote.createBook(book);
-        System.out.println("Created book");
     }
 
     public Iterable<Book> getAllBooks() {
@@ -32,18 +31,16 @@ public class ConnectionClient {
             return remote.getAllBooks();
         }
         catch (javax.ws.rs.NotFoundException exception) {
-            System.out.println("No records available");
+            exception.printStackTrace();
             return null;
         }
     }
 
     public void deleteBook(Long id) {
         remote.deleteBook(id);
-        System.out.println("Deleted book");
     }
 
     public void updateBook(Long id, Book book) {
         remote.updateBook(id, book);
-        System.out.println("Edited book");
     }
 }
